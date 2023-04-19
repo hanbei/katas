@@ -20,7 +20,6 @@ class GildedRoseTest(unittest.TestCase):
         self.assert_item(items[2], sell_in=0, quality=1)
         self.assert_item(items[3], sell_in=0, quality=-1)
 
-
     def test_decays_twice_as_fast_after_sell_date(self):
         items = [
             Item("foo", 0, 5),
@@ -47,7 +46,20 @@ class GildedRoseTest(unittest.TestCase):
         self.assert_item(items[2], "Sulfuras, Hand of Ragnaros", sell_in=1, quality=2)
         self.assert_item(items[3], "Sulfuras, Hand of Ragnaros", sell_in=-3, quality=-1)
 
+    def test_brie_increases_in_quality_but_never_more_than_50(self):
+        items = [
+            Item("Aged Brie", 0, 5),
+            Item("Aged Brie", 5, 5),
+            Item("Aged Brie", 0, 50),
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+
+        self.assert_item(items[0], "Aged Brie", sell_in=-1, quality=7)
+        self.assert_item(items[1], "Aged Brie", sell_in=4, quality=6)
+        self.assert_item(items[2], "Aged Brie", sell_in=-1, quality=50)
+
     def assert_item(self, item, name="foo", sell_in=-1, quality=0):
-        self.assertEquals(name, item.name)
-        self.assertEquals(quality, item.quality)
-        self.assertEquals(sell_in, item.sell_in)
+        self.assertEqual(name, item.name)
+        self.assertEqual(quality, item.quality)
+        self.assertEqual(sell_in, item.sell_in)
