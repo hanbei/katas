@@ -33,10 +33,10 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_legendary_item_never_loses_quality_and_sell_in(self):
         items = [
-            Item("Sulfuras, Hand of Ragnaros", 5, 10),
-            Item("Sulfuras, Hand of Ragnaros", 2, 50),
-            Item("Sulfuras, Hand of Ragnaros", 1, 2),
-            Item("Sulfuras, Hand of Ragnaros", -3, -1),
+            LegendaryItem("Sulfuras, Hand of Ragnaros", 5, 10),
+            LegendaryItem("Sulfuras, Hand of Ragnaros", 2, 50),
+            LegendaryItem("Sulfuras, Hand of Ragnaros", 1, 2),
+            LegendaryItem("Sulfuras, Hand of Ragnaros", -3, -1),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()

@@ -59,3 +59,11 @@ class NormalItem(Item):
 
         self.quality = min(50, max(self.quality - decay, 0))
 
+
+class LegendaryItem(Item):
+
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        pass
