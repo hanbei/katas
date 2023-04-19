@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "katas"
+version = "0.1.0"
+description = ""
+authors = ["Florian Schulz <florian.schulz@hanbei.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.2"
+pytest-mock = "*"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
