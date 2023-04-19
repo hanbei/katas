@@ -33,6 +33,19 @@ class NormalItem(Item):
 
         self.quality = min(50, max(self.quality - quality_decay, 0))
 
+class ConjuredItem(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_decay = 2
+        if self.sell_in < 0:
+            quality_decay = 4
+
+        self.quality = min(50, max(self.quality - quality_decay, 0))
+
 
 class LegendaryItem(Item):
 

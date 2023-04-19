@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from katas.gildedrose import *
 
+#
+# https://www.youtube.com/watch?v=wGQPqPorLQ4
+#
 
 def test_normal_item():
     items = [
@@ -16,6 +19,22 @@ def test_normal_item():
     assert_item(items[2], sell_in=0, quality=1)
     assert_item(items[3], sell_in=0, quality=0)
 
+
+def test_conjured_item():
+    items = [
+        ConjuredItem("foo", 0, 0),
+        ConjuredItem("foo", 1, 2),
+        ConjuredItem("foo", 1, 2),
+        ConjuredItem("foo", 3, 10),
+        ConjuredItem("foo", 1, -1),
+    ]
+    update_quality(items)
+
+    assert_item(items[0], sell_in=-1, quality=0)
+    assert_item(items[1], sell_in=0, quality=0)
+    assert_item(items[2], sell_in=0, quality=0)
+    assert_item(items[3], sell_in=2, quality=8)
+    assert_item(items[4], sell_in=0, quality=0)
 
 def test_decays_twice_as_fast_after_sell_date():
     items = [
