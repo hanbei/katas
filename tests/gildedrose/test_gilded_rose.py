@@ -20,6 +20,18 @@ class GildedRoseTest(unittest.TestCase):
         self.assert_item(items[2], sell_in=0, quality=1)
         self.assert_item(items[3], sell_in=0, quality=-1)
 
+
+    def test_decays_twice_as_fast_after_sell_date(self):
+        items = [
+            Item("foo", 0, 5),
+            Item("foo", 1, 5),
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+
+        self.assert_item(items[0], sell_in=-1, quality=3)
+        self.assert_item(items[1], sell_in=0, quality=4)
+
     def test_legendary_item_never_loses_quality_and_sell_in(self):
         items = [
             Item("Sulfuras, Hand of Ragnaros", 5, 10),
