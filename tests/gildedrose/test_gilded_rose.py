@@ -18,7 +18,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assert_item(items[0], sell_in=-1, quality=0)
         self.assert_item(items[1], sell_in=0, quality=0)
         self.assert_item(items[2], sell_in=0, quality=1)
-        self.assert_item(items[3], sell_in=0, quality=-1)
+        self.assert_item(items[3], sell_in=0, quality=0)
 
     def test_decays_twice_as_fast_after_sell_date(self):
         items = [
