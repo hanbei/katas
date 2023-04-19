@@ -49,8 +49,7 @@ def test_brie_increases_in_quality_but_never_more_than_50():
         AgingItem("Aged Brie", 5, 5),
         AgingItem("Aged Brie", 0, 50),
     ]
-    gilded_rose = GildedRose(items)
-    gilded_rose.update_quality()
+    update_quality(items)
 
     assert_item(items[0], "Aged Brie", sell_in=-1, quality=7)
     assert_item(items[1], "Aged Brie", sell_in=4, quality=6)
@@ -68,8 +67,7 @@ def test_backstage_passes():
         BackstagePass("Backstage passes to a TAFKAL80ETC concert", 0, 5),
         BackstagePass("Backstage passes to a TAFKAL80ETC concert", -1, 5),
     ]
-    gilded_rose = GildedRose(items)
-    gilded_rose.update_quality()
+    update_quality(items)
 
     assert_item(items[0], "Backstage passes to a TAFKAL80ETC concert", sell_in=29, quality=6)
     assert_item(items[1], "Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=6)

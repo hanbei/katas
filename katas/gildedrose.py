@@ -97,6 +97,6 @@ class BackstagePass(Item):
         if self.sell_in < 5:
             quality_increase = 3
         if self.sell_in < 0:
-            quality_increase = self.quality
+            quality_increase = -self.quality
 
         self.quality = min(50, max(self.quality + quality_increase, 0))
