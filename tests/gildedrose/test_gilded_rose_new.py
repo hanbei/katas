@@ -43,6 +43,19 @@ def test_legendary_item_never_loses_quality_and_sell_in():
     assert_item(items[3], "Sulfuras, Hand of Ragnaros", sell_in=-3, quality=-1)
 
 
+def test_brie_increases_in_quality_but_never_more_than_50():
+    items = [
+        AgingItem("Aged Brie", 0, 5),
+        AgingItem("Aged Brie", 5, 5),
+        AgingItem("Aged Brie", 0, 50),
+    ]
+    gilded_rose = GildedRose(items)
+    gilded_rose.update_quality()
+
+    assert_item(items[0], "Aged Brie", sell_in=-1, quality=7)
+    assert_item(items[1], "Aged Brie", sell_in=4, quality=6)
+    assert_item(items[2], "Aged Brie", sell_in=-1, quality=50)
+
 def assert_item(item, name="foo", sell_in=-1, quality=0):
     assert name == item.name
     assert quality == item.quality

@@ -48,9 +48,9 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_brie_increases_in_quality_but_never_more_than_50(self):
         items = [
-            Item("Aged Brie", 0, 5),
-            Item("Aged Brie", 5, 5),
-            Item("Aged Brie", 0, 50),
+            AgingItem("Aged Brie", 0, 5),
+            AgingItem("Aged Brie", 5, 5),
+            AgingItem("Aged Brie", 0, 50),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()

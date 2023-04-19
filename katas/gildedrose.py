@@ -51,13 +51,13 @@ class NormalItem(Item):
         super().__init__(name, sell_in, quality)
 
     def update_quality(self):
-        decay = 1
+        quality_decay = 1
         self.sell_in -= 1
 
         if self.sell_in < 0:
-            decay = 2
+            quality_decay = 2
 
-        self.quality = min(50, max(self.quality - decay, 0))
+        self.quality = min(50, max(self.quality - quality_decay, 0))
 
 
 class LegendaryItem(Item):
@@ -67,3 +67,18 @@ class LegendaryItem(Item):
 
     def update_quality(self):
         pass
+
+
+class AgingItem(Item):
+
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        quality_increase = 1
+        self.sell_in -= 1
+
+        if self.sell_in < 0:
+            quality_increase = 2
+
+        self.quality = min(50, max(self.quality + quality_increase, 0))
