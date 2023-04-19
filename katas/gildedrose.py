@@ -51,9 +51,9 @@ class NormalItem(Item):
         super().__init__(name, sell_in, quality)
 
     def update_quality(self):
-        quality_decay = 1
         self.sell_in -= 1
 
+        quality_decay = 1
         if self.sell_in < 0:
             quality_decay = 2
 
@@ -75,10 +75,28 @@ class AgingItem(Item):
         super().__init__(name, sell_in, quality)
 
     def update_quality(self):
-        quality_increase = 1
         self.sell_in -= 1
 
+        quality_increase = 1
         if self.sell_in < 0:
             quality_increase = 2
+
+        self.quality = min(50, max(self.quality + quality_increase, 0))
+
+
+class BackstagePass(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_increase = 1
+        if self.sell_in < 10:
+            quality_increase = 2
+        if self.sell_in < 5:
+            quality_increase = 3
+        if self.sell_in < 0:
+            quality_increase = self.quality
 
         self.quality = min(50, max(self.quality + quality_increase, 0))

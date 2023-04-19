@@ -61,14 +61,14 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_backstage_passes(self):
         items = [
-            Item("Backstage passes to a TAFKAL80ETC concert", 30, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 11, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 7, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 6, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 5, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 1, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", 0, 5),
-            Item("Backstage passes to a TAFKAL80ETC concert", -1, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 30, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 11, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 7, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 6, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 5, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 1, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", 0, 5),
+            BackstagePass("Backstage passes to a TAFKAL80ETC concert", -1, 5),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
