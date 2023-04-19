@@ -59,6 +59,29 @@ class GildedRoseTest(unittest.TestCase):
         self.assert_item(items[1], "Aged Brie", sell_in=4, quality=6)
         self.assert_item(items[2], "Aged Brie", sell_in=-1, quality=50)
 
+    def test_backstage_passes(self):
+        items = [
+            Item("Backstage passes to a TAFKAL80ETC concert", 30, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 11, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 7, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 6, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 5, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 1, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", 0, 5),
+            Item("Backstage passes to a TAFKAL80ETC concert", -1, 5),
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+
+        self.assert_item(items[0], "Backstage passes to a TAFKAL80ETC concert", sell_in=29, quality=6)
+        self.assert_item(items[1], "Backstage passes to a TAFKAL80ETC concert", sell_in=10, quality=6)
+        self.assert_item(items[2], "Backstage passes to a TAFKAL80ETC concert", sell_in=6, quality=7)
+        self.assert_item(items[3], "Backstage passes to a TAFKAL80ETC concert", sell_in=5, quality=7)
+        self.assert_item(items[4], "Backstage passes to a TAFKAL80ETC concert", sell_in=4, quality=8)
+        self.assert_item(items[5], "Backstage passes to a TAFKAL80ETC concert", sell_in=0, quality=8)
+        self.assert_item(items[6], "Backstage passes to a TAFKAL80ETC concert", sell_in=-1, quality=0)
+        self.assert_item(items[7], "Backstage passes to a TAFKAL80ETC concert", sell_in=-2, quality=0)
+
     def assert_item(self, item, name="foo", sell_in=-1, quality=0):
         self.assertEqual(name, item.name)
         self.assertEqual(quality, item.quality)
