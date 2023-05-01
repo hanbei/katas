@@ -9,9 +9,7 @@ class GildedRose(object):
 
     def _update_brie(self, item):
         self._increase_quality(item)
-
         self._update_sell_in(item)
-
         if item.sell_in < 0:
             self._increase_quality(item)
 
@@ -19,70 +17,40 @@ class GildedRose(object):
         pass
 
     def _update_backstage_passes(self, item):
-        if item.name != AGED_BRIE and item.name != BACKSTAGE_PASSES:
-            if item.quality > 0:
-                if item.name != HAND:
-                    item.quality = item.quality - 1
-        else:
-            if item.quality < 50:
-                item.quality = item.quality + 1
-                if item.name == BACKSTAGE_PASSES:
-                    if item.sell_in < 11:
-                        self._increase_quality(item)
-                    if item.sell_in < 6:
-                        self._increase_quality(item)
-        if item.name != HAND:
-            self._update_sell_in(item)
+        self._increase_quality(item)
+        if item.sell_in < 11:
+            self._increase_quality(item)
+        if item.sell_in < 6:
+            self._increase_quality(item)
+
+        self._update_sell_in(item)
+
         if item.sell_in < 0:
-            if item.name != AGED_BRIE:
-                if item.name != BACKSTAGE_PASSES:
-                    if item.quality > 0:
-                        if item.name != HAND:
-                            item.quality = item.quality - 1
-                else:
-                    item.quality = item.quality - item.quality
-            else:
-                self._increase_quality(item)
+            item.quality = item.quality - item.quality
 
     def _update_normal(self, item):
-        if item.name != AGED_BRIE and item.name != BACKSTAGE_PASSES:
-            if item.quality > 0:
-                if item.name != HAND:
-                    item.quality = item.quality - 1
-        else:
-            if item.quality < 50:
-                item.quality = item.quality + 1
-                if item.name == BACKSTAGE_PASSES:
-                    if item.sell_in < 11:
-                        self._increase_quality(item)
-                    if item.sell_in < 6:
-                        self._increase_quality(item)
-        if item.name != HAND:
-            self._update_sell_in(item)
+        self._decrease_quality(item)
+        self._update_sell_in(item)
         if item.sell_in < 0:
-            if item.name != AGED_BRIE:
-                if item.name != BACKSTAGE_PASSES:
-                    if item.quality > 0:
-                        if item.name != HAND:
-                            item.quality = item.quality - 1
-                else:
-                    item.quality = item.quality - item.quality
-            else:
-                self._increase_quality(item)
+            self._decrease_quality(item)
 
     def __init__(self, items):
         self.items = items
 
     def update_quality(self):
         for item in self.items:
-            if item == AGED_BRIE:
+            if item.name == AGED_BRIE:
                 self._update_brie(item)
-            elif item == HAND:
-                self._update_brie(item)
-            elif item == BACKSTAGE_PASSES:
-                self._update_brie(item)
+            elif item.name == HAND:
+                self._update_hand(item)
+            elif item.name == BACKSTAGE_PASSES:
+                self._update_backstage_passes(item)
             else:
                 self._update_normal(item)
+
+    def _decrease_quality(self, item):
+        if item.quality > 0:
+            item.quality = item.quality - 1
 
     def _increase_quality(self, item):
         if item.quality < 50:
