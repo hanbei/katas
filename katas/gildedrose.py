@@ -7,33 +7,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+            item.update_quality()
 
 
 class Item:
@@ -44,3 +18,72 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+class NormalItem(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_decay = 1
+        if self.sell_in < 0:
+            quality_decay = 2
+
+        self.quality = min(50, max(self.quality - quality_decay, 0))
+
+class ConjuredItem(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_decay = 2
+        if self.sell_in < 0:
+            quality_decay = 4
+
+        self.quality = min(50, max(self.quality - quality_decay, 0))
+
+
+class LegendaryItem(Item):
+
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        pass
+
+
+class AgingItem(Item):
+
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_increase = 1
+        if self.sell_in < 0:
+            quality_increase = 2
+
+        self.quality = min(50, max(self.quality + quality_increase, 0))
+
+
+class BackstagePass(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+
+    def update_quality(self):
+        self.sell_in -= 1
+
+        quality_increase = 1
+        if self.sell_in < 10:
+            quality_increase = 2
+        if self.sell_in < 5:
+            quality_increase = 3
+        if self.sell_in < 0:
+            quality_increase = -self.quality
+
+        self.quality = min(50, max(self.quality + quality_increase, 0))
