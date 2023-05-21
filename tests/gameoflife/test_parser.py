@@ -51,3 +51,13 @@ def test_broken_generation_is_default_one():
     """
     gameOfLife = GameOfLifeParser().parse(input)
     assert gameOfLife.generation == 1
+
+def test_broken_dimension_is_default():
+    input = """
+    Generation X:
+    5 Y
+    .......
+    """
+    gameOfLife = GameOfLifeParser().parse(input)
+    assert gameOfLife.width == 10
+    assert gameOfLife.height == 10
