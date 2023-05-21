@@ -1,7 +1,7 @@
 from katas.gameoflife.parser import GameOfLifeParser
 
 
-def test_game_of_life_parser():
+def test_game_of_life_parser() -> None:
     input = """
     Generation 1:
     4 8
@@ -21,7 +21,7 @@ def test_game_of_life_parser():
                                [0, 0, 0, 0, 0, 0, 0, 0]]
 
 
-def test_game_of_life_parser2():
+def test_game_of_life_parser2() -> None:
     input = """
     Generation 2:
     5 7
@@ -43,7 +43,7 @@ def test_game_of_life_parser2():
                                [0, 0, 0, 0, 0, 0, 0, 0]]
 
 
-def test_broken_generation_is_default_one():
+def test_broken_generation_is_default_one() -> None:
     input = """
     Generation X:
     5 7
@@ -52,7 +52,8 @@ def test_broken_generation_is_default_one():
     gameOfLife = GameOfLifeParser().parse(input)
     assert gameOfLife.generation == 1
 
-def test_broken_dimension_is_default():
+
+def test_broken_dimension_is_default() -> None:
     input = """
     Generation X:
     5 Y
