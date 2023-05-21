@@ -13,5 +13,8 @@ def test_game_of_life_parser():
 
     gameOfLife = GameOfLifeParser().parse(input)
     assert gameOfLife.width == 8
-    assert gameOfLife.heigt == 4
-    assert gameOfLife.grid == [[],[],[],[]]
+    assert gameOfLife.height == 4
+    assert gameOfLife.grid == [[0, 0, 0, 0, 0, 0, 0, 0],
+                               [0, 0, 0, 0, 1, 0, 0, 0],
+                               [0, 0, 0, 1, 1, 0, 0, 0],
+                               [0, 0, 0, 0, 0, 0, 0, 0]]
