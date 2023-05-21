@@ -5,11 +5,14 @@ from katas.gameoflife.GameOfLife import GameOfLife
 
 class GameOfLifeParser():
     def parse(self, input):
-        lines = input.splitlines()
+        lines = self.parse_lines(input)
         generation = self.parse_generation(lines[0])
         w, h = self.parse_dimensions(lines[1])
         grid = self.parse_field(w, h, input[2:])
         return GameOfLife(generation=generation, width=w, height=h, grid=grid)
+
+    def parse_lines(self, input):
+        return list(map(lambda s: s.strip(), input.strip().splitlines()))
 
     def parse_generation(self, generation_string):
         match = re.search(r"Generation (\d+)", generation_string)
