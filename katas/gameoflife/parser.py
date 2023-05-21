@@ -17,8 +17,12 @@ class GameOfLifeParser():
             return int(match.group(1))
         return 1
 
-    def parse_dimensions(self, param):
-        return (8, 4)
+    def parse_dimensions(self, dimension_string):
+        match = re.search(r"(\d+)\s+(\d+)", dimension_string)
+        if match:
+            return int(match.group(2)), int(match.group(1))
+
+        return (10, 10)
 
     def parse_field(self, w, h, param):
         return [[0, 0, 0, 0, 0, 0, 0, 0],
