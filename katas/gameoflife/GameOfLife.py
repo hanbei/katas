@@ -12,10 +12,10 @@ class Grid():
         value = self.grid[self._address(x, y)]
         return value
 
-    def make_alive(self, x: int, y: int) -> None:
+    def lives(self, x: int, y: int) -> None:
         self.grid[self._address(x, y)] = 1
 
-    def kill(self, x, y):
+    def dies(self, x, y):
         self.grid[self._address(x, y)] = 0
 
     def count_neighbours(self, x: int, y: int) -> int:

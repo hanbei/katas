@@ -33,8 +33,8 @@ class GameOfLifeParser():
         for x, row in enumerate(lines):
             for y, col in enumerate(row):
                 if col == '*':
-                    grid.make_alive(x, y)
+                    grid.lives(x, y)
                 else:
-                    grid.kill(x, y)
+                    grid.dies(x, y)
 
         return grid
