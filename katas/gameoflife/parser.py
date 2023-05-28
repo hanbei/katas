@@ -1,8 +1,7 @@
-import logging
 import re
 from typing import Tuple
 
-from katas.gameoflife.GameOfLife import GameOfLife
+from katas.gameoflife.GameOfLife import GameOfLife, Grid
 
 
 class GameOfLifeParser():
@@ -29,16 +28,13 @@ class GameOfLifeParser():
 
         return (10, 10)
 
-    def parse_grid(self, width: int, height: int, lines: list[str]) -> list[list[int]]:
-        grid = []
-        for row in lines:
-            grid_row = []
-            for col in row:
-                if col == '.':
-                    grid_row.append(0)
+    def parse_grid(self, width: int, height: int, lines: list[str]) -> Grid:
+        grid = Grid(width, height)
+        for x, row in enumerate(lines):
+            for y, col in enumerate(row):
+                if col == '*':
+                    grid.make_alive(x, y)
                 else:
-                    grid_row.append(1)
-            if len(grid_row) != width:
-                logging.error(f"row is not of correct length. Expected: {width}, Actual: {len(grid_row)}")
-            grid.append(grid_row)
+                    grid.kill(x, y)
+
         return grid
