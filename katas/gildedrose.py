@@ -16,6 +16,9 @@ class Item:
         self.sell_in = sell_in
         self.quality = quality
 
+    def update_quality(self):
+        pass
+        
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
