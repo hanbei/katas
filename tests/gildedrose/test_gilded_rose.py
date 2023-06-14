@@ -7,10 +7,10 @@ from katas.gildedrose import *
 class GildedRoseTest(unittest.TestCase):
     def test_normal_item(self):
         items = [
-            NormalItem("foo", 0, 0),
-            NormalItem("foo", 1, 1),
-            NormalItem("foo", 1, 2),
-            NormalItem("foo", 1, -1),
+            Item("foo", 0, 0),
+            Item("foo", 1, 1),
+            Item("foo", 1, 2),
+            Item("foo", 1, -1),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
@@ -22,8 +22,8 @@ class GildedRoseTest(unittest.TestCase):
 
     def test_decays_twice_as_fast_after_sell_date(self):
         items = [
-            NormalItem("foo", 0, 5),
-            NormalItem("foo", 1, 5),
+            Item("foo", 0, 5),
+            Item("foo", 1, 5),
         ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()

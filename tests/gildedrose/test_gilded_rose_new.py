@@ -7,10 +7,10 @@ from katas.gildedrose import *
 
 def test_normal_item():
     items = [
-        NormalItem("foo", 0, 0),
-        NormalItem("foo", 1, 1),
-        NormalItem("foo", 1, 2),
-        NormalItem("foo", 1, -1),
+        Item("foo", 0, 0),
+        Item("foo", 1, 1),
+        Item("foo", 1, 2),
+        Item("foo", 1, -1),
     ]
     update_quality(items)
 
@@ -38,8 +38,8 @@ def test_conjured_item():
 
 def test_decays_twice_as_fast_after_sell_date():
     items = [
-        NormalItem("foo", 0, 5),
-        NormalItem("foo", 1, 5),
+        Item("foo", 0, 5),
+        Item("foo", 1, 5),
     ]
     update_quality(items)
 

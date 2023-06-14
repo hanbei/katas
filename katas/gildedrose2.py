@@ -7,6 +7,17 @@ AGED_BRIE = "Aged Brie"
 
 class GildedRose(object):
 
+    def update_quality(self):
+        for item in self.items:
+            if item.name == AGED_BRIE:
+                self._update_brie(item)
+            elif item.name == HAND:
+                self._update_hand(item)
+            elif item.name == BACKSTAGE_PASSES:
+                self._update_backstage_passes(item)
+            else:
+                self._update_normal(item)
+
     def _update_brie(self, item):
         self._increase_quality(item)
         self._update_sell_in(item)
@@ -36,17 +47,6 @@ class GildedRose(object):
 
     def __init__(self, items):
         self.items = items
-
-    def update_quality(self):
-        for item in self.items:
-            if item.name == AGED_BRIE:
-                self._update_brie(item)
-            elif item.name == HAND:
-                self._update_hand(item)
-            elif item.name == BACKSTAGE_PASSES:
-                self._update_backstage_passes(item)
-            else:
-                self._update_normal(item)
 
     def _decrease_quality(self, item):
         if item.quality > 0:
