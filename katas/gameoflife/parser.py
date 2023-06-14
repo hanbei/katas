@@ -30,8 +30,8 @@ class GameOfLifeParser():
 
     def parse_grid(self, width: int, height: int, lines: list[str]) -> Grid:
         grid = Grid(width, height)
-        for x, row in enumerate(lines):
-            for y, col in enumerate(row):
+        for y, row in enumerate(lines):
+            for x, col in enumerate(row):
                 if col == '*':
                     grid.lives(x, y)
                 else:

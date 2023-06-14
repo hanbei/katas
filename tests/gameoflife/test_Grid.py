@@ -7,8 +7,8 @@ def test_grid():
 
     grid = Grid(width, height)
 
-    for i in range(0, height):
-        for j in range(0, width):
+    for i in range(0, width):
+        for j in range(0, height):
             grid.lives(i, j)
             assert grid.get(i, j) == 1
 
@@ -40,3 +40,15 @@ def test_neighbours():
     assert grid.count_neighbours(1, 1) == 7
     grid.lives(2, 2)
     assert grid.count_neighbours(1, 1) == 8
+
+
+def test_neigbour_count2():
+    grid = Grid(5, 5)
+
+    grid.lives(1, 2)
+    grid.lives(2, 2)
+    grid.lives(3, 2)
+
+    assert grid.count_neighbours(1, 2) == 1
+    assert grid.count_neighbours(2, 2) == 2
+    assert grid.count_neighbours(3, 2) == 1
