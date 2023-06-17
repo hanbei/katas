@@ -1,0 +1,1 @@
+from katas.evilcorp.evilcorp import *
