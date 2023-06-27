@@ -10,7 +10,7 @@ def test_censor_nice_as_word():
 
 
 def test_censor_nice_not_as_word():
-    assert evilcorp.censor("You are a niceperson") == "You are a XXXXperson"
+    assert evilcorp.censor("You are a niceperson") == "You are a XXXXXXXXXX"
 
 
 def test_censor_nice_different_Case():
